@@ -42,8 +42,57 @@ void registrarPaquete(vector<Paquete>& listaPaquetes, string id, float peso) {
 // TU OBRA MAESTRA (En construcción)
 void optimizarCarga(float pesoTotal) {
     cout << "\n[Motor Logistico] Calculando optimizacion para " << pesoTotal << " kg...\n";
+
+    float mejorDesperdicio = 9999999.0; // Empezamos con un desperdicio altísimo
+    int mejorTotalVehiculos = 999999; // Agregamos esta variable
+    int mejorG = 0, mejorT = 0, mejor1721 = 0, mejor350 = 0;
+
+    // Calculamos el límite máximo de veces que podríamos necesitar cada camión
+    // El +1 asegura que siempre tengamos margen para pasarnos un poquito y evaluar el sobrante
+    int limG = (pesoTotal / 30000) + 1;
+    int limT = (pesoTotal / 18000) + 1;
+    int lim1721 = (pesoTotal / 9000) + 1;
+    int lim350 = (pesoTotal / 3500) + 1;
+
+    // FASE ÚNICA: Evaluación exhaustiva pura (La computadora hace todo el trabajo)
+    for (int g = 0; g <= limG; g++) {
+        for (int t = 0; t <= limT; t++) {
+            for (int c = 0; c <= lim1721; c++) {
+                for (int p = 0; p <= lim350; p++) {
+                    
+                    float capActual = (g * 30000.0) + (t * 18000.0) + (c * 9000.0) + (p * 3500.0);
+                    
+                    // Solo nos interesan combinaciones que logren llevar la carga
+                    if (capActual >= pesoTotal) {
+                        float desperdicio = capActual - pesoTotal;
+                        int totalVehiculos = g + t + c + p; // Sumamos cuántos camiones se usarían
+                        
+                        // Criterio 1: Si hay menos espacio vacío, es el nuevo ganador.
+                        // Criterio 2 (Desempate): Si el espacio vacío es igual, gana el de menos camiones.
+                        if (desperdicio < mejorDesperdicio || (desperdicio == mejorDesperdicio && totalVehiculos < mejorTotalVehiculos)) {
+                            mejorDesperdicio = desperdicio;
+                            mejorTotalVehiculos = totalVehiculos; // Guardamos el récord de menos camiones
+                            mejorG = g;
+                            mejorT = t;
+                            mejor1721 = c;
+                            mejor350 = p;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // IMPRESIÓN DE RESULTADOS
+    float capacidadAsignada = (mejorG * 30000.0) + (mejorT * 18000.0) + (mejor1721 * 9000.0) + (mejor350 * 3500.0);
+
+    cout << "\n--- ASIGNACION OPTIMA DE FLOTA ---\n";
+    if (mejorG > 0) cout << "-> Gandolas (30T): " << mejorG << "\n";
+    if (mejorT > 0) cout << "-> Camiones Toronto (18T): " << mejorT << "\n";
+    if (mejor1721 > 0) cout << "-> Camiones 1721 (9T): " << mejor1721 << "\n";
+    if (mejor350 > 0) cout << "-> Camiones 350 (3.5T): " << mejor350 << "\n";
     
-    // (Daniel: Aquí programaremos el algoritmo para evitar el espacio vacío)
-    
-    cout << "(Algoritmo matemático en construcción)\n";
+    cout << "----------------------------------\n";
+    cout << "Capacidad Total Asignada: " << capacidadAsignada << " kg\n";
+    cout << "Espacio Vacio (Desperdicio): " << mejorDesperdicio << " kg\n";
 }
