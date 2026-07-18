@@ -1,0 +1,10 @@
+# Ejecutables compilados (Prohibido subirlos a GitHub)
+*.exe
+*.o
+*.out
+
+# Configuracion local de VS Code (Rutas privadas de tu PC)
+.vscode/
+
+# Archivos de pruebas (Sandbox temporal)
+prueba.cpp
