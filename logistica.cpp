@@ -1,4 +1,8 @@
 #include <iostream>
+#include <iomanip>
+#include <vector>
+#include <cmath>
+#include <limits>
 #include "logistica.h" // Importas tu propio contrato
 
 using namespace std;
@@ -43,56 +47,77 @@ void registrarPaquete(vector<Paquete>& listaPaquetes, string id, float peso) {
 void optimizarCarga(float pesoTotal) {
     cout << "\n[Motor Logistico] Calculando optimizacion para " << pesoTotal << " kg...\n";
 
-    float mejorDesperdicio = 9999999.0; // Empezamos con un desperdicio altísimo
-    int mejorTotalVehiculos = 999999; // Agregamos esta variable
-    int mejorG = 0, mejorT = 0, mejor1721 = 0, mejor350 = 0;
+    if (pesoTotal <= 0.0f) {
+        cout << "Error: El peso total debe ser mayor a 0 kg.\n";
+        return;
+    }
 
-    // Calculamos el límite máximo de veces que podríamos necesitar cada camión
-    // El +1 asegura que siempre tengamos margen para pasarnos un poquito y evaluar el sobrante
-    int limG = (pesoTotal / 30000) + 1;
-    int limT = (pesoTotal / 18000) + 1;
-    int lim1721 = (pesoTotal / 9000) + 1;
-    int lim350 = (pesoTotal / 3500) + 1;
+    const double peso = static_cast<double>(pesoTotal);
+    const double capMinima = 3500.0; 
+    
+    // Constante de penalizacion exponencial (300 * 10^2 = 30000 kg = 1 Gandola)
+    const double CONSTANTE_PENALIZACION = 300.0;
 
-    // FASE ÚNICA: Evaluación exhaustiva pura (La computadora hace todo el trabajo)
-    for (int g = 0; g <= limG; g++) {
-        for (int t = 0; t <= limT; t++) {
-            for (int c = 0; c <= lim1721; c++) {
-                for (int p = 0; p <= lim350; p++) {
-                    
-                    float capActual = (g * 30000.0) + (t * 18000.0) + (c * 9000.0) + (p * 3500.0);
-                    
-                    // Solo nos interesan combinaciones que logren llevar la carga
-                    if (capActual >= pesoTotal) {
-                        float desperdicio = capActual - pesoTotal;
-                        int totalVehiculos = g + t + c + p; // Sumamos cuántos camiones se usarían
-                        
-                        // Criterio 1: Si hay menos espacio vacío, es el nuevo ganador.
-                        // Criterio 2 (Desempate): Si el espacio vacío es igual, gana el de menos camiones.
-                        if (desperdicio < mejorDesperdicio || (desperdicio == mejorDesperdicio && totalVehiculos < mejorTotalVehiculos)) {
-                            mejorDesperdicio = desperdicio;
-                            mejorTotalVehiculos = totalVehiculos; // Guardamos el récord de menos camiones
-                            mejorG = g;
-                            mejorT = t;
-                            mejor1721 = c;
-                            mejor350 = p;
-                        }
-                    }
+    // Cotas maximas de iteracion por vehiculo
+    const int maxG = static_cast<int>(ceil(peso / 30000.0));
+    const int maxT = static_cast<int>(ceil(peso / 18000.0));
+    const int max1721 = static_cast<int>(ceil(peso / 9000.0));
+
+    double mejorCosto = numeric_limits<double>::max();
+    double mejorVacio = 0.0;   
+    double mejorTotal = 0.0;
+    int mejorVehiculos = 0;
+    
+    int mejorG = 0, mejorT = 0, mejorC = 0, mejorP = 0;
+
+    // Busqueda exhaustiva acotada a 3 dimensiones
+    for (int g = 0; g <= maxG; ++g) {
+        double capG = g * 30000.0;
+
+        for (int t = 0; t <= maxT; ++t) {
+            double capGT = capG + t * 18000.0;
+
+            for (int m = 0; m <= max1721; ++m) {
+                double subtotal = capGT + m * 9000.0;
+                double remanente = peso - subtotal;
+
+                int p = 0;
+                if (remanente > 0.0) {
+                    // Calculo directo con mitigador de error de punto flotante
+                    p = static_cast<int>(ceil(remanente / capMinima - 1e-9));
+                }
+
+                double total = subtotal + p * capMinima;
+                double vacio = total - peso;
+                int totalVehiculos = g + t + m + p;
+
+                // Fusion de objetivos: Espacio vacio + Penalizacion Exponencial
+                double costo = vacio + (static_cast<double>(totalVehiculos) * totalVehiculos * CONSTANTE_PENALIZACION);
+
+                if (costo < mejorCosto - 1e-9) {
+                    mejorCosto = costo;
+                    mejorVacio = vacio;   
+                    mejorTotal = total;
+                    mejorVehiculos = totalVehiculos;
+                    mejorG = g;
+                    mejorT = t;
+                    mejorC = m;
+                    mejorP = p;
                 }
             }
         }
     }
 
-    // IMPRESIÓN DE RESULTADOS
-    float capacidadAsignada = (mejorG * 30000.0) + (mejorT * 18000.0) + (mejor1721 * 9000.0) + (mejor350 * 3500.0);
-
+    // Reporte por consola
+    cout << fixed << setprecision(2);
     cout << "\n--- ASIGNACION OPTIMA DE FLOTA ---\n";
     if (mejorG > 0) cout << "-> Gandolas (30T): " << mejorG << "\n";
     if (mejorT > 0) cout << "-> Camiones Toronto (18T): " << mejorT << "\n";
-    if (mejor1721 > 0) cout << "-> Camiones 1721 (9T): " << mejor1721 << "\n";
-    if (mejor350 > 0) cout << "-> Camiones 350 (3.5T): " << mejor350 << "\n";
+    if (mejorC > 0) cout << "-> Camiones 1721 (9T): " << mejorC << "\n";
+    if (mejorP > 0) cout << "-> Camiones 350 (3.5T): " << mejorP << "\n";
     
     cout << "----------------------------------\n";
-    cout << "Capacidad Total Asignada: " << capacidadAsignada << " kg\n";
-    cout << "Espacio Vacio (Desperdicio): " << mejorDesperdicio << " kg\n";
+    cout << "Vehiculos totales despachados: " << mejorVehiculos << "\n";
+    cout << "Capacidad Total Asignada: " << mejorTotal << " kg\n";
+    cout << "Espacio Vacio (Desperdicio REAL): " << mejorVacio << " kg\n";
 }
