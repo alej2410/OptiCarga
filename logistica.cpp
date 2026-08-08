@@ -3,7 +3,7 @@
 #include <vector>
 #include <cmath>
 #include <limits>
-#include "logistica.h" // Importas tu propio contrato
+#include "logistica.h"
 
 using namespace std;
 
@@ -14,8 +14,7 @@ Camion::Camion(string tipoCamion, float capacidad) {
     capacidadMaxima = capacidad;
 }
 
-// --- 2. TU BASE DE DATOS DE VEHÍCULOS ---
-// El famoso arreglo con los 4 niveles de transporte logístico.
+// --- 2. BASE DE DATOS DE VEHÍCULOS ---
 Camion flota[4] = {
     Camion("Camion 350 (C2 Ligero)", 3500.0),
     Camion("Camion 1721 (C2 Pesado)", 9000.0),
@@ -25,7 +24,6 @@ Camion flota[4] = {
 
 // --- 3. LÓGICA DE LAS FUNCIONES ---
 
-// Esta función ya está lista. Cuando Leonel pida ver el catálogo, se imprimirá esto:
 void mostrarCatalogoCamiones() {
     cout << "\n--- Catalogo Oficial de Vehiculos OptiCarga ---\n";
     for (int i = 0; i < 4; i++) {
@@ -43,7 +41,7 @@ void registrarPaquete(vector<Paquete>& listaPaquetes, string id, float peso) {
     listaPaquetes.push_back(nuevo); // push_back añade el elemento al final del vector
 }
 
-// TU OBRA MAESTRA (En construcción)
+// El algoritmo de optimización de carga
 void optimizarCarga(float pesoTotal) {
     cout << "\n[Motor Logistico] Calculando optimizacion para " << pesoTotal << " kg...\n";
 

@@ -27,7 +27,6 @@ public:
 
 // --- 2. PROTOTIPOS DE FUNCIONES (Tus Herramientas) ---
 // Aquí solo le decimos al sistema que estas funciones van a existir.
-// La logica real la programarás tú en logistica.cpp
 
 // Función para que Leonel imprima la lista de los 4 vehículos
 void mostrarCatalogoCamiones();
@@ -35,7 +34,7 @@ void mostrarCatalogoCamiones();
 // Función que tomará los datos que pida Leonel y los meterá en el vector
 void registrarPaquete(vector<Paquete>& listaPaquetes, string id, float peso);
 
-// Tu función estrella: el algoritmo para evaluar el espacio vacío
+// Función que optimizará la asignación de vehículos según el peso total de los paquetes
 void optimizarCarga(float pesoTotal);
 
 #endif
