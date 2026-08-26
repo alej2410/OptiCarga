@@ -33,7 +33,7 @@ void mostrarCatalogoCamiones() {
     cout << "-----------------------------------------------\n";
 }
 
-// Esta función agarra los datos que Leonel capturó y los mete en la memoria dinámica
+// Esta función agarra los datos que main capturó y los mete en la memoria dinámica
 void registrarPaquete(vector<Paquete>& listaPaquetes, string id, float peso) {
     Paquete nuevo;
     nuevo.idRastreo = id;

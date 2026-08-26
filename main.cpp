@@ -19,9 +19,9 @@ int main() {
         cout << "\n===== MENU PRINCIPAL =====\n";
         cout << "1. Ver catalogo de vehiculos\n";
         cout << "2. Registrar nuevo paquete\n";
-        cout << "3. Ver lista de paquetes registrados\n"; // NUEVA OPCIÓN
-        cout << "4. Optimizar asignacion de flota\n";     // SE MOVIÓ AL 4
-        cout << "5. Salir\n";                             // SE MOVIÓ AL 5
+        cout << "3. Ver lista de paquetes registrados\n"; 
+        cout << "4. Optimizar asignacion de flota\n";   
+        cout << "5. Salir\n";                          
         cout << "Seleccione una opcion: ";
         
         // --- ESCUDO PROTECTOR 1: Validar el menu ---
@@ -67,7 +67,7 @@ int main() {
                 break;
                 
             case 3:
-                // --- NUEVA FUNCIÓN: VISUALIZAR INVENTARIO ---
+
                 if (listaPaquetes.empty()) {
                     cout << "\nNo hay paquetes registrados en el sistema actualmente.\n";
                 } else {
@@ -99,7 +99,7 @@ int main() {
                 break;
         }
         
-    } while(opcion != 5); // ACTUALIZADO PARA SALIR CON EL 5
+    } while(opcion != 5);
     
     return 0;
 }
