@@ -46,7 +46,7 @@ void optimizarCarga(float pesoTotal) {
     cout << "\n[Motor Logistico] Calculando optimizacion para " << pesoTotal << " kg...\n";
 
     if (pesoTotal <= 0.0f) {
-        cout << "Error: El peso total debe ser mayor a 0 kg.\n";
+        cout << "Error: No hay paquetes registrados. El peso total debe ser mayor a 0 kg.\n";
         return;
     }
 
