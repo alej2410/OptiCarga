@@ -1,4 +1,4 @@
-# OptiCarga 🚚
+# OptiCarga
 
 Sistema de gestión logística y estructuración de datos desarrollado en C++ para calcular la asignación óptima de carga en una flota de vehículos pesados y ligeros.
 
