@@ -16,3 +16,4 @@ Sistema de gestión logística y estructuración de datos desarrollado en C++ pa
 Para ensamblar el proyecto a través de la terminal, utiliza el siguiente comando:
 ```bash
 g++ main.cpp logistica.cpp -o opticarga.exe
+./opticarga.exe
