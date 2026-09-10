@@ -1,6 +1,6 @@
 # OptiCarga
 
-Sistema de gestión logística y estructuración de datos desarrollado en C++ para calcular la asignación óptima de carga en una flota de vehículos pesados y ligeros.
+Programa desarrollado en C++ que registra cargas y determina una combinación adecuada de vehículos para transportar su peso total, buscando reducir tanto la capacidad de carga no utilizada como la cantidad de vehículos necesarios.
 
 ## Características Principales
 * **Motor de Optimización:** Algoritmo de escalarización que evalúa múltiples combinaciones de vehículos para encontrar el punto de equilibrio entre menor espacio vacío y menor cantidad de unidades despachadas.
