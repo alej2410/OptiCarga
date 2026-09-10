@@ -89,7 +89,7 @@ void optimizarFlota(float pesoTotal) {
                 double vacio = total - peso;
                 int totalVehiculos = g + t + m + p;
 
-                // Funcion de costo: Espacio vacio + Penalizacion Cuadratica por cantidad de vehiculos
+                // Funcion de costo: Capacidad no utilizada + Penalizacion Cuadratica por cantidad de vehiculos
                 double costo = vacio + (static_cast<double>(totalVehiculos) * totalVehiculos * CONSTANTE_PENALIZACION);
 
                 if (costo < mejorCosto - 1e-9) {

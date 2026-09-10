@@ -4,6 +4,8 @@
 #include <string>
 #include <vector>
 
+using namespace std;
+
 // --- 1. ESTRUCTURA DE DATOS ---
 
 // Estructura que representa una carga con un ID único y su peso en kilogramos
