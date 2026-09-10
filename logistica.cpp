@@ -117,5 +117,5 @@ void optimizarCarga(float pesoTotal) {
     cout << "----------------------------------\n";
     cout << "Vehiculos totales despachados: " << mejorVehiculos << "\n";
     cout << "Capacidad Total Asignada: " << mejorTotal << " kg\n";
-    cout << "Espacio Vacio (Desperdicio REAL): " << mejorVacio << " kg\n";
+    cout << "Capacidad de carga no utilizada: " << mejorVacio << " kg\n";
 }
