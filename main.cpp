@@ -9,8 +9,8 @@ using namespace std;
 int main() {
     int opcion{0}; 
     float pesoTotal{0.0f};   
-    string idPaquete;        
-    float pesoPaquete{0.0f};
+    string idCarga;        
+    float pesoCarga{0.0f};
     bool idDuplicado; 
     
     vector<Carga> listaCargas; 
@@ -18,8 +18,8 @@ int main() {
     do {
         cout << "\n===== MENU PRINCIPAL =====\n";
         cout << "1. Ver catalogo de vehiculos\n";
-        cout << "2. Registrar nuevo paquete\n";
-        cout << "3. Ver lista de paquetes registrados\n"; 
+        cout << "2. Registrar nueva carga\n";
+        cout << "3. Ver lista de cargas registradas\n"; 
         cout << "4. Optimizar asignacion de flota\n";   
         cout << "5. Salir\n";                          
         cout << "Seleccione una opcion: ";
@@ -41,12 +41,12 @@ int main() {
                 // --- ESCUDO PROTECTOR 3: Validar ID unico ---
                 do {
                     idDuplicado = false; 
-                    cout << "Ingrese el ID del paquete (ej. P001): ";
-                    cin >> idPaquete;
+                    cout << "Ingrese el ID de la carga (ej. C001): ";
+                    cin >> idCarga;
                     
                     for (size_t i = 0; i < listaCargas.size(); i++) {
-                        if (listaCargas[i].idRastreo == idPaquete) {
-                            cout << "Error: El ID '" << idPaquete << "' ya se encuentra registrado. Use uno diferente.\n";
+                        if (listaCargas[i].idRastreo == idCarga) {
+                            cout << "Error: El ID '" << idCarga << "' ya se encuentra registrado. Use uno diferente.\n";
                             idDuplicado = true;
                             break; 
                         }
@@ -55,14 +55,14 @@ int main() {
                 
                 // --- ESCUDO PROTECTOR 2: Validar el peso ---
                 cout << "Ingrese el peso del paquete (kg): ";
-                while (!(cin >> pesoPaquete) || pesoPaquete <= 0) {
+                while (!(cin >> pesoCarga) || pesoCarga <= 0) {
                     cin.clear();
                     cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     cout << "Error: Peso invalido. Ingrese un numero mayor a 0: ";
                 }
                 
-                registrarCarga(listaCargas, idPaquete, pesoPaquete);
-                pesoTotal += pesoPaquete;
+                registrarCarga(listaCargas, idCarga, pesoCarga);
+                pesoTotal += pesoCarga;
                 cout << "Carga registrada exitosamente. (Peso acumulado: " << pesoTotal << " kg)\n";
                 break;
                 

@@ -8,7 +8,7 @@
 using namespace std;
 
 // --- 1. CONSTRUCTOR DE LA CLASE ---
-// Así le enseñamos al programa cómo "fabricar" un camión cuando le pasamos los datos
+// El constructor de la clase Camion inicializa los atributos tipo y capacidadMaxima con los valores proporcionados al crear un objeto de la clase.
 Camion::Camion(string tipoCamion, float capacidad) {
     tipo = tipoCamion;
     capacidadMaxima = capacidad;
@@ -41,7 +41,7 @@ void registrarCarga(vector<Carga>& listaCargas, string id, float peso) {
     listaCargas.push_back(nueva); // push_back añade el elemento al final del vector
 }
 
-// El algoritmo de optimización de carga
+// Algoritmo que optimiza la asignación de vehículos según el peso total de las cargas registradas.
 void optimizarFlota(float pesoTotal) {
     cout << "\n[Motor Logistico] Calculando optimizacion para " << pesoTotal << " kg...\n";
 
@@ -68,7 +68,7 @@ void optimizarFlota(float pesoTotal) {
     
     int mejorG = 0, mejorT = 0, mejorC = 0, mejorP = 0;
 
-    // Busqueda exhaustiva acotada a 3 dimensiones
+    // Iteracion de todas las combinaciones posibles de vehiculos
     for (int g = 0; g <= maxG; ++g) {
         double capG = g * 30000.0;
 

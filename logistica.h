@@ -9,7 +9,7 @@ using namespace std;
 
 // --- 1. ESTRUCTURA DE DATOS ---
 
-// El molde para los paquetes
+// El molde para guardar la informacion de cada carga
 struct Carga {
     string idRastreo;
     float peso;
@@ -21,17 +21,17 @@ public:
     string tipo;
     float capacidadMaxima;
 
-    // Constructor (La fábrica del camión)
+    // Constructor de la clase Camion
     Camion(string tipoCamion, float capacidad);
 };
 
 // --- 2. PROTOTIPOS DE FUNCIONES (Tus Herramientas) ---
 // Aquí solo le decimos al sistema que estas funciones van a existir.
 
-// Función para que Leonel imprima la lista de los 4 vehículos
+// Función que muestra el catálogo de camiones disponibles
 void mostrarCatalogoCamiones();
 
-// Función que tomará los datos que pida Leonel y los meterá en el vector
+// Función que tomará los datos de la carga y los guardará en memoria dinámica
 void registrarCarga(vector<Carga>& listaCargas, string id, float peso);
 
 // Función que optimizará la asignación de vehículos según el peso total de las cargas
