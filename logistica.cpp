@@ -15,7 +15,7 @@ Camion::Camion(string tipoCamion, float capacidad) {
 }
 
 // --- 2. BASE DE DATOS DE VEHÍCULOS ---
-Camion flota[4] = {
+const Camion flota[4] = {
     Camion("Camion 350 (C2 Ligero)", 3500.0),
     Camion("Camion 1721 (C2 Pesado)", 9000.0),
     Camion("Toronto (C3)", 18000.0),
