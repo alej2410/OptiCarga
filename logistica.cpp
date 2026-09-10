@@ -42,7 +42,7 @@ void registrarCarga(vector<Carga>& listaCargas, string id, float peso) {
 }
 
 // El algoritmo de optimización de carga
-void optimizarCarga(float pesoTotal) {
+void optimizarFlota(float pesoTotal) {
     cout << "\n[Motor Logistico] Calculando optimizacion para " << pesoTotal << " kg...\n";
 
     if (pesoTotal <= 0.0f) {

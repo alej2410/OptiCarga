@@ -35,6 +35,6 @@ void mostrarCatalogoCamiones();
 void registrarCarga(vector<Carga>& listaCargas, string id, float peso);
 
 // Función que optimizará la asignación de vehículos según el peso total de las cargas
-void optimizarCarga(float pesoTotal);
+void optimizarFlota(float pesoTotal);
 
 #endif

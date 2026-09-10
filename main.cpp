@@ -86,7 +86,7 @@ int main() {
                 if (listaCargas.empty()) {
                     cout << "Error: No hay cargas registradas. No se puede optimizar la carga.\n";
                 } else {
-                    optimizarCarga(pesoTotal);
+                    optimizarFlota(pesoTotal);
                 }
                 break;
                 
