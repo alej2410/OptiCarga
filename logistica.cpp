@@ -53,7 +53,7 @@ void optimizarFlota(float pesoTotal) {
     const double peso = static_cast<double>(pesoTotal);
     const double capMinima = 3500.0; 
     
-    // Constante de penalizacion exponencial (300 * 10^2 = 30000 kg = 1 Gandola)
+    // Constante de penalizacion cuadratica (300 * 10^2 = 30000 kg = 1 Gandola)
     const double CONSTANTE_PENALIZACION = 300.0;
 
     // Cotas maximas de iteracion por vehiculo
@@ -89,7 +89,7 @@ void optimizarFlota(float pesoTotal) {
                 double vacio = total - peso;
                 int totalVehiculos = g + t + m + p;
 
-                // Fusion de objetivos: Espacio vacio + Penalizacion Exponencial
+                // Funcion de costo: Espacio vacio + Penalizacion Cuadratica por cantidad de vehiculos
                 double costo = vacio + (static_cast<double>(totalVehiculos) * totalVehiculos * CONSTANTE_PENALIZACION);
 
                 if (costo < mejorCosto - 1e-9) {
