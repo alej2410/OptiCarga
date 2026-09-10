@@ -1,21 +1,18 @@
 #ifndef LOGISTICA_H
 #define LOGISTICA_H
 
-#include <iostream>
 #include <string>
 #include <vector>
 
-using namespace std;
-
 // --- 1. ESTRUCTURA DE DATOS ---
 
-// El molde para guardar la informacion de cada carga
+// Estructura que representa una carga con un ID único y su peso en kilogramos
 struct Carga {
-    string idRastreo;
+    string idCarga;
     float peso;
 };
 
-// El molde de la flota
+// Clase que representa un camión con un tipo y una capacidad máxima de carga
 class Camion {
 public:
     string tipo;
@@ -25,9 +22,8 @@ public:
     Camion(string tipoCamion, float capacidad);
 };
 
-// --- 2. PROTOTIPOS DE FUNCIONES (Tus Herramientas) ---
-// Aquí solo le decimos al sistema que estas funciones van a existir.
-
+// --- 2. PROTOTIPOS DE FUNCIONES ---
+//
 // Función que muestra el catálogo de camiones disponibles
 void mostrarCatalogoCamiones();
 

@@ -24,7 +24,7 @@ int main() {
         cout << "5. Salir\n";                          
         cout << "Seleccione una opcion: ";
         
-        // --- ESCUDO PROTECTOR 1: Validar el menu ---
+        // --- Validar entrada del usuario ---
         if (!(cin >> opcion)) {
             cin.clear(); 
             cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
@@ -38,14 +38,14 @@ int main() {
                 break;
                 
             case 2:
-                // --- ESCUDO PROTECTOR 3: Validar ID unico ---
+                // --- Validar ID único ---
                 do {
                     idDuplicado = false; 
                     cout << "Ingrese el ID de la carga (ej. C001): ";
                     cin >> idCarga;
                     
                     for (size_t i = 0; i < listaCargas.size(); i++) {
-                        if (listaCargas[i].idRastreo == idCarga) {
+                        if (listaCargas[i].idCarga == idCarga) {
                             cout << "Error: El ID '" << idCarga << "' ya se encuentra registrado. Use uno diferente.\n";
                             idDuplicado = true;
                             break; 
@@ -53,8 +53,8 @@ int main() {
                     }
                 } while (idDuplicado);
                 
-                // --- ESCUDO PROTECTOR 2: Validar el peso ---
-                cout << "Ingrese el peso del paquete (kg): ";
+                // --- Validar peso de la carga ---
+                cout << "Ingrese el peso de la carga (kg): ";
                 while (!(cin >> pesoCarga) || pesoCarga <= 0) {
                     cin.clear();
                     cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -73,10 +73,10 @@ int main() {
                 } else {
                     cout << "\n--- LISTA DE CARGAS REGISTRADAS ---\n";
                     for (size_t i = 0; i < listaCargas.size(); i++) {
-                        cout << "ID: " << listaCargas[i].idRastreo << " \t| Peso: " << listaCargas[i].peso << " kg\n";
+                        cout << "ID: " << listaCargas[i].idCarga << " \t| Peso: " << listaCargas[i].peso << " kg\n";
                     }
                     cout << "-------------------------------------\n";
-                    cout << "Total de carga: " << listaCargas.size() << "\n";
+                    cout << "Total de cargas: " << listaCargas.size() << "\n";
                     cout << "Peso Total Acumulado: " << pesoTotal << " kg\n";
                 }
                 break;

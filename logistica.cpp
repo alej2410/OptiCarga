@@ -33,10 +33,10 @@ void mostrarCatalogoCamiones() {
     cout << "-----------------------------------------------\n";
 }
 
-// Esta función agarra los datos que main capturó y los mete en la memoria dinámica
+// Registra una nueva carga en la lista de cargas
 void registrarCarga(vector<Carga>& listaCargas, string id, float peso) {
     Carga nueva;
-    nueva.idRastreo = id;
+    nueva.idCarga = id;
     nueva.peso = peso;
     listaCargas.push_back(nueva); // push_back añade el elemento al final del vector
 }
@@ -68,7 +68,7 @@ void optimizarFlota(float pesoTotal) {
     
     int mejorG = 0, mejorT = 0, mejorC = 0, mejorP = 0;
 
-    // Iteracion de todas las combinaciones posibles de vehiculos
+    // Iteracion de las combinaciones de vehiculos dentro de las cotas calculadas
     for (int g = 0; g <= maxG; ++g) {
         double capG = g * 30000.0;
 
@@ -108,7 +108,7 @@ void optimizarFlota(float pesoTotal) {
 
     // Reporte por consola
     cout << fixed << setprecision(2);
-    cout << "\n--- ASIGNACION OPTIMA DE FLOTA ---\n";
+    cout << "\n--- COMBINACION OPTIMIZADA DE FLOTA ---\n";
     if (mejorG > 0) cout << "-> Gandolas (30T): " << mejorG << "\n";
     if (mejorT > 0) cout << "-> Camiones Toronto (18T): " << mejorT << "\n";
     if (mejorC > 0) cout << "-> Camiones 1721 (9T): " << mejorC << "\n";

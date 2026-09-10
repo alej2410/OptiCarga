@@ -30,7 +30,7 @@ El programa trabaja únicamente con el peso de las cargas. No realiza una distri
 ## Funcionamiento
 
 1. El usuario registra una o varias cargas indicando su identificador y peso.
-2. El sistema almacena las cargas y acumula el peso total que debe transportarse.
+2. El sistema almacena temporalmente las cargas en memoria y acumula el peso total que debe transportarse.
 3. Al solicitar la optimización, el programa evalúa diferentes combinaciones de los vehículos disponibles.
 4. Para cada combinación calcula la capacidad de carga no utilizada y la cantidad total de vehículos.
 5. Finalmente, selecciona la combinación que obtiene el menor puntaje según la función de costo definida.
@@ -82,7 +82,7 @@ g++ main.cpp logistica.cpp -o opticarga.exe
 En Windows:
 
 ```bash
-./opticarga.exe
+./opticarga.exe o .\opticarga.exe
 ```
 
 En Linux o macOS puede compilarse como:
