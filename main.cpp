@@ -13,8 +13,8 @@ int main() {
     float pesoPaquete{0.0f};
     bool idDuplicado; 
     
-    vector<Paquete> listaPaquetes; 
-    
+    vector<Carga> listaCargas; 
+        
     do {
         cout << "\n===== MENU PRINCIPAL =====\n";
         cout << "1. Ver catalogo de vehiculos\n";
@@ -44,8 +44,8 @@ int main() {
                     cout << "Ingrese el ID del paquete (ej. P001): ";
                     cin >> idPaquete;
                     
-                    for (size_t i = 0; i < listaPaquetes.size(); i++) {
-                        if (listaPaquetes[i].idRastreo == idPaquete) {
+                    for (size_t i = 0; i < listaCargas.size(); i++) {
+                        if (listaCargas[i].idRastreo == idPaquete) {
                             cout << "Error: El ID '" << idPaquete << "' ya se encuentra registrado. Use uno diferente.\n";
                             idDuplicado = true;
                             break; 
@@ -61,30 +61,30 @@ int main() {
                     cout << "Error: Peso invalido. Ingrese un numero mayor a 0: ";
                 }
                 
-                registrarPaquete(listaPaquetes, idPaquete, pesoPaquete);
+                registrarCarga(listaCargas, idPaquete, pesoPaquete);
                 pesoTotal += pesoPaquete;
-                cout << "Paquete registrado exitosamente. (Peso acumulado: " << pesoTotal << " kg)\n";
+                cout << "Carga registrada exitosamente. (Peso acumulado: " << pesoTotal << " kg)\n";
                 break;
                 
             case 3:
 
-                if (listaPaquetes.empty()) {
-                    cout << "\nNo hay paquetes registrados en el sistema actualmente.\n";
+                if (listaCargas.empty()) {
+                    cout << "\nNo hay cargas registradas en el sistema actualmente.\n";
                 } else {
-                    cout << "\n--- LISTA DE PAQUETES REGISTRADOS ---\n";
-                    for (size_t i = 0; i < listaPaquetes.size(); i++) {
-                        cout << "ID: " << listaPaquetes[i].idRastreo << " \t| Peso: " << listaPaquetes[i].peso << " kg\n";
+                    cout << "\n--- LISTA DE CARGAS REGISTRADAS ---\n";
+                    for (size_t i = 0; i < listaCargas.size(); i++) {
+                        cout << "ID: " << listaCargas[i].idRastreo << " \t| Peso: " << listaCargas[i].peso << " kg\n";
                     }
                     cout << "-------------------------------------\n";
-                    cout << "Total de paquetes: " << listaPaquetes.size() << "\n";
+                    cout << "Total de carga: " << listaCargas.size() << "\n";
                     cout << "Peso Total Acumulado: " << pesoTotal << " kg\n";
                 }
                 break;
 
             case 4:
                 cout << "Optimizando asignacion de flota...\n";
-                if (listaPaquetes.empty()) {
-                    cout << "Error: No hay paquetes registrados. No se puede optimizar la carga.\n";
+                if (listaCargas.empty()) {
+                    cout << "Error: No hay cargas registradas. No se puede optimizar la carga.\n";
                 } else {
                     optimizarCarga(pesoTotal);
                 }

@@ -10,7 +10,7 @@ using namespace std;
 // --- 1. ESTRUCTURA DE DATOS ---
 
 // El molde para los paquetes
-struct Paquete {
+struct Carga {
     string idRastreo;
     float peso;
 };
@@ -32,9 +32,9 @@ public:
 void mostrarCatalogoCamiones();
 
 // Función que tomará los datos que pida Leonel y los meterá en el vector
-void registrarPaquete(vector<Paquete>& listaPaquetes, string id, float peso);
+void registrarCarga(vector<Carga>& listaCargas, string id, float peso);
 
-// Función que optimizará la asignación de vehículos según el peso total de los paquetes
+// Función que optimizará la asignación de vehículos según el peso total de las cargas
 void optimizarCarga(float pesoTotal);
 
 #endif

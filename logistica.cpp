@@ -34,11 +34,11 @@ void mostrarCatalogoCamiones() {
 }
 
 // Esta función agarra los datos que main capturó y los mete en la memoria dinámica
-void registrarPaquete(vector<Paquete>& listaPaquetes, string id, float peso) {
-    Paquete nuevo;
-    nuevo.idRastreo = id;
-    nuevo.peso = peso;
-    listaPaquetes.push_back(nuevo); // push_back añade el elemento al final del vector
+void registrarCarga(vector<Carga>& listaCargas, string id, float peso) {
+    Carga nueva;
+    nueva.idRastreo = id;
+    nueva.peso = peso;
+    listaCargas.push_back(nueva); // push_back añade el elemento al final del vector
 }
 
 // El algoritmo de optimización de carga
@@ -46,7 +46,7 @@ void optimizarCarga(float pesoTotal) {
     cout << "\n[Motor Logistico] Calculando optimizacion para " << pesoTotal << " kg...\n";
 
     if (pesoTotal <= 0.0f) {
-        cout << "Error: No hay paquetes registrados. El peso total debe ser mayor a 0 kg.\n";
+        cout << "Error: No hay cargas registradas. El peso total debe ser mayor a 0 kg.\n";
         return;
     }
 
