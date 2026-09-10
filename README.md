@@ -82,7 +82,7 @@ g++ main.cpp logistica.cpp -o opticarga.exe
 En Windows:
 
 ```bash
-./opticarga.exe o .\opticarga.exe
+./opticarga.exe
 ```
 
 En Linux o macOS puede compilarse como:
